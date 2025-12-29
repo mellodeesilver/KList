@@ -168,8 +168,8 @@ $(function(){
             }
             inputKinks.placeCategories($categories);
 
-            // Make things update hash
-            $('#InputList').find('button.choice').on('click', function(){
+            // Make things update hash - use event delegation to avoid memory leaks
+            $('#InputList').off('click', 'button.choice').on('click', 'button.choice', function(){
                 location.hash = inputKinks.updateHash();
             });
         },

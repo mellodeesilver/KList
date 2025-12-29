@@ -38,16 +38,16 @@
 
 #Roles & Groupings
 (Self, Partner)
-* as Male
-* as Female
-* as Femboy
-* as Futa
-* as MtF trans
-* as FtM trans
-* as male & female
-* as multiple males
-* as multiple females
-* as multiple males & females
+* Male
+* Female
+* Femboy
+* Futa
+* MtF trans
+* FtM trans
+* Male & female
+* Multiple males
+* Multiple females
+* Multiple males & females
 * as Dominant
 * as Submissive
 * as Switch
