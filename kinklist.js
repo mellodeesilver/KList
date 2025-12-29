@@ -24,7 +24,6 @@ var conditionalCategories = {
     'Foot Worship': { trigger: 'Feet', triggerCategory: 'Bodies' },
     // BDSM/Bondage
     'Restrictive': { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' },
-    'Toys': { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' },
     'BDSM & Related': {
         triggers: [
             { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' },
@@ -82,8 +81,32 @@ var conditionalCategories = {
             { trigger: 'Blood', triggerCategory: 'Fluids' }
         ]
     },
-    // Misc fetishes
-    'Misc. Fetish': { trigger: 'Photography/Videotaping', triggerCategory: 'General' }
+    // Group activities
+    'Group Sex': { trigger: 'Gangbang', triggerCategory: 'Group Sex' },
+    // Breeding/Pregnancy
+    'Breeding & Pregnancy': {
+        triggers: [
+            { trigger: 'Impregnation', triggerCategory: 'Breeding & Pregnancy' },
+            { trigger: 'Breeding', triggerCategory: 'Breeding & Pregnancy' },
+            { trigger: 'Pregnancy', triggerCategory: 'Breeding & Pregnancy' }
+        ]
+    },
+    // Body modification
+    'Body Modification': {
+        triggers: [
+            { trigger: 'Feminization', triggerCategory: 'Body Modification' },
+            { trigger: 'Masculinization', triggerCategory: 'Body Modification' }
+        ]
+    },
+    // Breath play
+    'Breath & Smothering': {
+        triggers: [
+            { trigger: 'Breath play', triggerCategory: 'Breath & Smothering' },
+            { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' }
+        ]
+    },
+    // Other fetishes
+    'Other Fetishes': { trigger: 'Food Play', triggerCategory: 'Other Fetishes' }
 };
 
 var log = function(val, base) {

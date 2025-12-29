@@ -212,13 +212,26 @@ td + td { border-left-style:none }
 	clear:both
 }
 
-.col {
-	float:left;
-	box-sizing:border-box;
-	margin:0;
-	padding:5px
+#InputList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 
+.col {
+	flex: 1 1 350px;
+	box-sizing:border-box;
+	margin:0;
+	padding:5px;
+	min-width: 350px;
+}
+
+/* Hide empty columns */
+.col:empty {
+	display: none;
+}
+
+/* Fallback for older browsers */
 .col.col25 { width:25% }
 
 .col.col33 { width:33.33333% }
