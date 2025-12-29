@@ -4,7 +4,15 @@
 // Configuration for conditional categories
 var conditionalCategories = {
     'Watersports / Scat': { trigger: 'Pee/Urine', triggerCategory: 'Fluids' },
-    'General Surrealism': { trigger: 'Transformation', triggerCategory: 'General' },
+    'General Surrealism': {
+        triggers: [
+            { trigger: 'Transformation', triggerCategory: 'General' },
+            { trigger: 'Furry', triggerCategory: 'Fantasy Creatures' },
+            { trigger: 'Futanari/Futa', triggerCategory: 'Fantasy Creatures' },
+            { trigger: 'Monster or Alien', triggerCategory: 'Fantasy Creatures' },
+            { trigger: 'Tentacles', triggerCategory: 'Fantasy Creatures' }
+        ]
+    },
     'Vore / Unbirth': { trigger: 'Vore', triggerCategory: 'General Surrealism' },
     'Cum-related': { trigger: 'Cum', triggerCategory: 'Fluids' },
     'BDSM & Related': {
@@ -101,7 +109,7 @@ $(function(){
             }
             return $container;
         },
-        createKink: function(fields, kink){
+        createKink: function(fields, kink, categoryName){
             var $row = $('<tr>').data('kink', kink.kinkName).addClass('kinkRow');
             for(var i = 0; i < fields.length; i++) {
                 var $choices = inputKinks.createChoice();
@@ -110,6 +118,24 @@ $(function(){
                 $('<td>').append($choices).appendTo($row);
             }
             var kinkLabel = $('<td>').text(kink.kinkName).appendTo($row);
+            
+            // Check if this kink unlocks any conditional categories
+            var unlockedCats = inputKinks.getUnlockedCategories(kink.kinkName, categoryName);
+            if(unlockedCats.length > 0) {
+                var $indicator = $('<span>')
+                    .addClass('unlock-indicator')
+                    .attr('title', 'Unlocks: ' + unlockedCats.join(', '))
+                    .text(' ⊕')
+                    .css({
+                        color: '#4980ae',
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        marginLeft: '5px',
+                        cursor: 'help'
+                    });
+                kinkLabel.append($indicator);
+            }
+            
             if(kink.kinkDesc) {showDescriptionButton(kink.kinkDesc, kinkLabel);}
             $row.addClass('kink-' + strToClass(kink.kinkName));
             return $row;
@@ -148,6 +174,26 @@ $(function(){
                 }
                 inputKinks.$columns[colIndex].append($categories[i]);
             }
+        },
+        getUnlockedCategories: function(kinkName, categoryName) {
+            var unlockedCats = [];
+            for(var catName in conditionalCategories) {
+                var config = conditionalCategories[catName];
+                
+                // Check if this kink matches any trigger
+                if(config.triggers && Array.isArray(config.triggers)) {
+                    for(var i = 0; i < config.triggers.length; i++) {
+                        var trigger = config.triggers[i];
+                        if(trigger.trigger === kinkName && trigger.triggerCategory === categoryName) {
+                            unlockedCats.push(catName);
+                            break;
+                        }
+                    }
+                } else if(config.trigger === kinkName && config.triggerCategory === categoryName) {
+                    unlockedCats.push(catName);
+                }
+            }
+            return unlockedCats;
         },
         isConditionalCategory: function(catName){
             return conditionalCategories.hasOwnProperty(catName);
@@ -220,7 +266,7 @@ $(function(){
                 var $category = inputKinks.createCategory(catName, fields);
                 var $tbody = $category.find('tbody');
                 for(var k = 0; k < kinkArr.length; k++) {
-                    $tbody.append(inputKinks.createKink(fields, kinkArr[k]));
+                    $tbody.append(inputKinks.createKink(fields, kinkArr[k], catName));
                 }
 
                 $categories.push($category);
