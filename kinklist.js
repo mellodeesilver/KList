@@ -532,12 +532,31 @@ $(function(){
         },
         updateHash: function(){
             var hashValues = [];
-            $('#InputList .choices').each(function(){
-                var $this = $(this);
-                var lvlInt = $this.find('.selected').data('levelInt');
-                if(!lvlInt) lvlInt = 0;
-                hashValues.push(lvlInt);
-            });
+            
+            // Iterate through categories in the original order from kinks object
+            var kinkCats = Object.keys(kinks);
+            for(var i = 0; i < kinkCats.length; i++) {
+                var catName = kinkCats[i];
+                var category = kinks[catName];
+                var fields = category.fields;
+                var kinkArr = category.kinks;
+                
+                for(var k = 0; k < kinkArr.length; k++) {
+                    var kink = kinkArr[k];
+                    for(var f = 0; f < fields.length; f++) {
+                        var field = fields[f];
+                        var selector = '.cat-' + strToClass(catName) + 
+                                      ' .kink-' + strToClass(kink.kinkName) + 
+                                      ' .choice-' + strToClass(field);
+                        var $choices = $(selector);
+                        var $selected = $choices.find('.choice.selected');
+                        var lvlInt = $selected.data('levelInt');
+                        if(!lvlInt) lvlInt = 0;
+                        hashValues.push(lvlInt);
+                    }
+                }
+            }
+            
             var listType = $('#listType').val();
             return listType + '.' + inputKinks.encode(Object.keys(colors).length, hashValues);
         },
@@ -548,30 +567,50 @@ $(function(){
             try {
                 // Extract list type if present
                 var parts = hash.split('.');
-                if(parts.length >= 2) {
-                    var listType = parts[0];
-                    if(['classic', 'detailed', 'plsno'].indexOf(listType) >= 0) {
-                        // Only change if different to avoid recursive loading
-                        if($('#listType').val() !== listType) {
-                            $('#listType').val(listType);
-                            $('#listType').trigger('change');
-                            return; // Exit here as change handler will call parseHash again
-                        }
-                        hash = parts.slice(1).join('.');
+                var listType = null;
+                var hashData = hash;
+                
+                if(parts.length >= 2 && ['classic', 'detailed', 'plsno'].indexOf(parts[0]) >= 0) {
+                    listType = parts[0];
+                    hashData = parts.slice(1).join('.');
+                    
+                    // Only change list type if different to avoid recursive loading
+                    if($('#listType').val() !== listType) {
+                        $('#listType').val(listType);
+                        $('#listType').trigger('change');
+                        return; // Exit here as change handler will call parseHash again
                     }
                 }
 
-                var values = inputKinks.decode(Object.keys(colors).length, hash);
+                var values = inputKinks.decode(Object.keys(colors).length, hashData);
                 var valueIndex = 0;
+                
                 // Clear all previous selections first
                 $('#InputList .choice.selected').removeClass('selected');
-                $('#InputList .choices').each(function(){
-                    var $this = $(this);
-                    var value = values[valueIndex++];
-                    if(value !== undefined && value >= 0 && value < $this.children().length) {
-                        $this.children().eq(value).addClass('selected');
+                
+                // Iterate through categories in the same order as updateHash
+                var kinkCats = Object.keys(kinks);
+                for(var i = 0; i < kinkCats.length; i++) {
+                    var catName = kinkCats[i];
+                    var category = kinks[catName];
+                    var fields = category.fields;
+                    var kinkArr = category.kinks;
+                    
+                    for(var k = 0; k < kinkArr.length; k++) {
+                        var kink = kinkArr[k];
+                        for(var f = 0; f < fields.length; f++) {
+                            var field = fields[f];
+                            var selector = '.cat-' + strToClass(catName) + 
+                                          ' .kink-' + strToClass(kink.kinkName) + 
+                                          ' .choice-' + strToClass(field);
+                            var $choices = $(selector);
+                            var value = values[valueIndex++];
+                            if(value !== undefined && value >= 0 && value < $choices.children().length) {
+                                $choices.children().eq(value).addClass('selected');
+                            }
+                        }
                     }
-                });
+                }
             } catch(e) {
                 console.error('Failed to parse hash:', e);
                 // Don't alert to avoid annoying users, just log to console
