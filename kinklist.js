@@ -4,14 +4,14 @@
 // Configuration for conditional categories
 var conditionalCategories = {
     // Anal/Ass content
-    'Ass play': {
+    'Ass playz': {
         triggers: [
             { trigger: 'Hotdogging', triggerCategory: 'General' },
             { trigger: 'Ass', triggerCategory: 'Bodies' }
         ]
     },
     // Genital-specific categories
-    'Oral Sex': {
+    'Oral Sexz': {
         triggers: [
             { trigger: 'Cocks', triggerCategory: 'Bodies' },
             { trigger: 'Pussy', triggerCategory: 'Bodies' }
@@ -35,7 +35,7 @@ var conditionalCategories = {
     // Non-consent
     'No consent': { trigger: 'Dubious consent', triggerCategory: 'General' },
     // Taboo content
-    'Taboo': { trigger: 'Incest', triggerCategory: 'Roleplay Dynamics' },
+    'Tabooz': { trigger: 'Incest', triggerCategory: 'Roleplay Dynamics' },
     // Fantasy/Surrealism
     'Fantasy Creatures': { trigger: 'Monster or Alien', triggerCategory: 'General' },
     'General Surrealism': {
@@ -49,7 +49,7 @@ var conditionalCategories = {
     },
     'Vore / Unbirth': { trigger: 'Vore', triggerCategory: 'General Surrealism' },
     // Fluids
-    'Fluids': {
+    'Fluidsz': {
         triggers: [
             { trigger: 'Swallowing', triggerCategory: 'Oral Sex' },
             { trigger: 'Facials', triggerCategory: 'Oral Sex' }
@@ -58,7 +58,7 @@ var conditionalCategories = {
     'Cum-related': { trigger: 'Cum', triggerCategory: 'Fluids' },
     'Watersports / Scat': { trigger: 'Pee/Urine', triggerCategory: 'Fluids' },
     // Degradation
-    'Degradation': {
+    'Degradationz': {
         triggers: [
             { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' },
             { trigger: 'Dirty Talking', triggerCategory: 'General' }
@@ -67,14 +67,14 @@ var conditionalCategories = {
     // Scents
     'Scents & Smells': { trigger: 'Musk', triggerCategory: 'Misc. Fetish' },
     // Pain/Torture
-    'Pain': {
+    'Painz': {
         triggers: [
             { trigger: 'Dominant / Submissive', triggerCategory: 'Domination' },
             { trigger: 'Biting', triggerCategory: 'General' },
             { trigger: 'Scratching', triggerCategory: 'General' }
         ]
     },
-    'Blood & Gore / Torture / Death': { 
+    'Blood & Gore / Torture / Deathz': { 
         triggers: [
             { trigger: 'Light pain', triggerCategory: 'Pain' },
             { trigger: 'Heavy pain', triggerCategory: 'Pain' },
@@ -84,7 +84,7 @@ var conditionalCategories = {
     // Group activities
     'Group Sex': { trigger: 'Gangbang', triggerCategory: 'Group Sex' },
     // Breeding/Pregnancy
-    'Breeding & Pregnancy': {
+    'Breeding & Pregnancyz': {
         triggers: [
             { trigger: 'Impregnation', triggerCategory: 'Breeding & Pregnancy' },
             { trigger: 'Breeding', triggerCategory: 'Breeding & Pregnancy' },
@@ -92,7 +92,7 @@ var conditionalCategories = {
         ]
     },
     // Body modification
-    'Body Modification': {
+    'Body Modificationz': {
         triggers: [
             { trigger: 'Feminization', triggerCategory: 'Body Modification' },
             { trigger: 'Masculinization', triggerCategory: 'Body Modification' }
