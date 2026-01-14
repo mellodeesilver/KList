@@ -170,7 +170,7 @@
 
 
 #Restraints
-((As Top, As Bottom)
+(As Top, As Bottom)
 * Gag
 ? As top, the use of a gag to restrict speaking or sounds, as bottom receiving the gag in the mouth.
 * Blindfolds
@@ -312,7 +312,7 @@
 ? The use of needles in a sexual way.
 
 #Training
-(As sub, As Dom)
+(As Dom, As Sub)
 * Clicker training 
 ? The use of a clicker to train someone using operant conditioning
 * Positive reinforcement
